@@ -17,7 +17,7 @@ namespace diamane { namespace platform {
         bool m_space;
         bool m_esc;
     public:
-        key_set();
+        key_set() {}
 
         auto capture_keys() -> void;
     };
