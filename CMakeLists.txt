@@ -9,7 +9,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 # libDiamane
 include_directories(${CMAKE_SOURCE_DIR})
 file(GLOB_RECURSE libDiamane_src libDiamane/*.cpp libDiamane/*.mm libDiamane/*.m)
-add_library(Diamane ${libDiamane_src} libDiamane/graphics/bezierpath.cpp libDiamane/graphics/bezierpath.hpp libDiamane/ui/button.cpp libDiamane/ui/button.hpp)
+add_library(Diamane ${libDiamane_src})
 
 # DiamaneTestApp
 file(GLOB_RECURSE DiamaneTestApp_src DiamaneTestApp/*.cpp)
