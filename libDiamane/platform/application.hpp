@@ -10,6 +10,7 @@
 #include "libDiamane/util/hints.hpp"
 #include "libDiamane/util/handle.hpp"
 #include "libDiamane/ui/menubar.hpp"
+#include "libDiamane/platform/keyset.hpp"
 
 namespace diamane { namespace platform {
 
@@ -17,6 +18,7 @@ namespace diamane { namespace platform {
     {
     private:
         handle m_handle;
+        key_set m_current_keys;
 
         __platform_specific static auto acquire_handle() -> handle;
 
@@ -28,6 +30,8 @@ namespace diamane { namespace platform {
         __platform_specific auto run(std::function<void()> setupFn) -> void;
 
         __platform_specific auto set_menubar(std::shared_ptr<diamane::ui::menubar> menubar) -> void;
+
+        __platform_specific auto current_key_set() -> key_set;
     };
 
 }};

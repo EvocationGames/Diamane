@@ -18,4 +18,10 @@ auto diamane::platform::application::shared() -> std::shared_ptr<diamane::platfo
     return std::make_shared<diamane::platform::application>(app);
 }
 
-// MARK:
+// MARK: - Accessors
+
+auto diamane::platform::application::current_key_set() -> diamane::platform::key_set
+{
+	m_current_keys.capture_keys();
+	return m_current_keys;
+}
