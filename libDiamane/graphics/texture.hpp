@@ -41,6 +41,9 @@ namespace diamane { namespace gl {
         auto draw(diamane::point point, int uv_index = 0) -> void;
         auto draw(diamane::rect rect, int uv_index = 0) -> void;
 
+        auto clear_uvs() -> void;
+        auto add_uv(const diamane::rect& r) -> void;
+
         auto paint(std::function<void(std::shared_ptr<diamane::gl::graphics>)> fn) -> void;
 
     };
