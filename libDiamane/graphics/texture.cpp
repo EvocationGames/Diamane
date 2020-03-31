@@ -75,7 +75,8 @@ auto diamane::gl::texture::clear_uvs() -> void
     m_uv_map.clear();
 }
 
-auto diamane::gl::texture::add_uv(const diamane::rect& r) -> void
+auto diamane::gl::texture::add_uv(const diamane::rect& r) -> int
 {
     m_uv_map.emplace_back(r);
+    return m_uv_map.size() - 1;
 }
