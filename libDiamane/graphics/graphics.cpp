@@ -4,6 +4,7 @@
 
 #include "libDiamane/graphics/graphics.hpp"
 #include <iostream>
+#include <complex>
 
 // MARK: - Constructors
 
@@ -32,7 +33,7 @@ auto diamane::gl::graphics::fill_rect(diamane::rect rect, diamane::gl::color col
     auto max_x = rect.max_x() <= m_size.width() ? rect.max_x() : m_size.width();
 
     for (auto y = min_y; y < max_y; ++y) {
-        auto ptr = buf + (y * stride) + min_x;
+        auto ptr = buf + static_cast<int>((y * stride) + min_x);
         for (auto x = min_x; x < max_x; ++x) {
             *ptr++ = color_value;
         }
@@ -50,15 +51,15 @@ auto diamane::gl::graphics::draw_line(diamane::point p0, diamane::point p1, diam
     auto x1 = p1.x();
     auto y1 = p1.y();
 
-    auto delta_x = abs(x1 - x0);
-    auto delta_y = abs(y1 - y0);
+    auto delta_x = std::fabs(x1 - x0);
+    auto delta_y = std::fabs(y1 - y0);
     auto sx = (x0 < x1) ? 1 : -1;
     auto sy = (y0 < y1) ? 1 : -1;
     auto err = delta_x - delta_y;
 
     for (;;) {
         if (x0 >= 0 && y0 >= 0 && x0 < m_size.width() && y0 < m_size.height()) {
-            buf[y0 * width + x0] = color_value;
+            buf[static_cast<int>(y0 * width + x0)] = color_value;
         }
         if (x0 == x1 && y0 == y1) {
             break;
