@@ -264,10 +264,10 @@ static inline auto color_vector(const diamane::gl::color& c) -> simd_float4
 
     // Setup the UV Mapping for the verticies
     auto uv = texture->uv(uv_index);
-    auto uv_x = static_cast<float>(uv.origin().x()) / static_cast<float>(w);
-    auto uv_y = static_cast<float>(uv.origin().y()) / static_cast<float>(h);
-    auto uv_w = static_cast<float>(uv.size().width()) / static_cast<float>(w);
-    auto uv_h = static_cast<float>(uv.size().height()) / static_cast<float>(h);
+    auto uv_x = static_cast<float>(uv.origin().x());
+    auto uv_y = static_cast<float>(uv.origin().y());
+    auto uv_w = static_cast<float>(uv.size().width());
+    auto uv_h = static_cast<float>(uv.size().height());
 
     v[0].texture_coord = vector2(static_cast<float>(uv_x), static_cast<float>(uv_y));
     v[1].texture_coord = vector2(static_cast<float>(uv_x + uv_w), static_cast<float>(uv_y));
