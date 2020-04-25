@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <vector>
+#include <functional>
 #include "libDiamane/util/geometry.hpp"
 #include "libDiamane/graphics/graphics.hpp"
 

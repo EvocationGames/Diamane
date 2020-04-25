@@ -39,13 +39,15 @@ auto diamane::ui::button::create(std::string title, rect frame) -> std::shared_p
 
 auto diamane::ui::button::draw() -> void
 {
+    m_left_cap->draw(point::zero());
+
 
     // Calculate where each of the textures is being draw
-    m_left_cap->draw(point(m_frame.min_x() - m_frame.width(), m_frame.min_y()));
-    m_fill->draw(rect(
-            m_frame.min_x() + m_left_cap->size().width(),
-            m_frame.min_y(),
-            m_frame.width() - m_left_cap->size().width() - m_right_cap->size().width(),
-            m_fill->size().height()));
-    m_right_cap->draw(point(m_frame.max_x() - m_right_cap->size().width(), m_frame.min_y()));
+//    m_left_cap->draw(point(m_frame.min_x() - m_frame.width(), m_frame.min_y()));
+//    m_fill->draw(rect(
+//            m_frame.min_x() + m_left_cap->size().width(),
+//            m_frame.min_y(),
+//            m_frame.width() - m_left_cap->size().width() - m_right_cap->size().width(),
+//            m_fill->size().height()));
+//    m_right_cap->draw(point(m_frame.max_x() - m_right_cap->size().width(), m_frame.min_y()));
 }

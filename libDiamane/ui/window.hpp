@@ -20,6 +20,8 @@ namespace diamane { namespace ui {
         std::string m_title { "Untitled Window" };
         handle m_handle;
         diamane::gl::color m_background_color { 0, 0, 0 };
+        std::function<auto()->void> m_draw;
+        diamane::size m_size;
 
         __platform_specific static auto _acquire_handle() -> handle;
 
@@ -36,9 +38,14 @@ namespace diamane { namespace ui {
         __platform_specific auto set_size(diamane::size size) -> void;
         __platform_specific auto set_background_color(const diamane::gl::color color) -> void;
 
+        auto size() const -> diamane::size;
+
         handle acquire_handle();
 
         __platform_specific auto on_draw(std::function<void()> fn) -> void;
+
+        __platform_specific auto draw() -> void;
+        __platform_specific auto clear() -> void;
     };
 
 }};

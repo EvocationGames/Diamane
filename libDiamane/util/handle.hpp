@@ -17,6 +17,8 @@ namespace diamane
         const void *m_ptr { nullptr };
     public:
 
+        handle() {}
+
         template<typename T, typename std::enable_if<std::is_pointer<T>::value>::type* = nullptr>
         handle(T value) {
             m_ptr = reinterpret_cast<const void *>(value);

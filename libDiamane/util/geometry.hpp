@@ -18,12 +18,12 @@ namespace diamane
         double m_x;
         double m_y;
     public:
-        point(const double x, const double y) : m_x(x), m_y(y) {};
+        point(double x, double y);
 
-        static auto zero() -> point { return point(0, 0); }
+        static auto zero() -> diamane::point;
 
-        auto x() const -> double { return m_x; };
-        auto y() const -> double { return m_y; };
+        auto x() const -> double;
+        auto y() const -> double;
     };
 
     /**
@@ -35,12 +35,12 @@ namespace diamane
         double m_width;
         double m_height;
     public:
-        size(const double width, const double height) : m_width(width), m_height(height) {};
+        size(double width, double height);
 
-        static auto zero() -> size { return size(0, 0); }
+        static auto zero() -> diamane::size;
 
-        auto width() const -> double { return m_width; };
-        auto height() const -> double { return m_height; };
+        auto width() const -> double;
+        auto height() const -> double;
     };
 
     /**
@@ -49,27 +49,27 @@ namespace diamane
      struct rect
      {
      private:
-         point m_origin;
-         size m_size;
+         diamane::point m_origin;
+         diamane::size m_size;
      public:
-         rect(point origin, size sz) : m_origin(origin), m_size(sz) {};
-         rect(const double x, const double y, const double width, const double height) : m_origin(x, y), m_size(width, height) {};
+         rect(diamane::point origin, diamane::size sz);
+         rect(double x, double y, double width, double height);
 
-         static auto zero() -> rect { return rect(point::zero(), size::zero()); };
+         static auto zero() -> diamane::rect;
 
-         auto origin() const -> point { return m_origin; };
-         auto size() const -> size { return m_size; };
+         auto origin() const -> diamane::point;
+         auto size() const -> diamane::size;
 
-         auto min_x() const -> double { return m_origin.x(); };
-         auto min_y() const -> double { return m_origin.y(); };
-         auto max_x() const -> double { return m_origin.x() + m_size.width(); };
-         auto max_y() const -> double { return m_origin.y() + m_size.height(); };
+         auto min_x() const -> double;
+         auto min_y() const -> double;
+         auto max_x() const -> double;
+         auto max_y() const -> double;
 
-         auto width() const -> double { return m_size.width(); };
-         auto height() const -> double { return m_size.height(); };
+         auto width() const -> double;
+         auto height() const -> double;
 
-         auto contains(point p) const -> bool { return (p.x() >= min_x() && p.x() < max_x()) && (p.y() >= min_y() && p.y() < max_y()); };
-         auto contains(rect r) const -> bool { return (r.min_x() >= min_x()) && (r.min_y() >= min_y()) && (r.max_x() <= max_x()) && (r.max_y() <= max_y()); };
+         auto contains(diamane::point p) const -> bool;
+         auto contains(diamane::rect r) const -> bool;
      };
 
 };

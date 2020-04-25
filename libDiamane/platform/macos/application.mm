@@ -52,7 +52,7 @@
 
 @end
 
-auto diamane::platform::application::run(std::function<void()> setupFn) -> void
+auto diamane::platform::application::run(int argc, const char **argv, std::function<void()> setupFn) -> void
 {
     if (auto app = m_handle.get<DiamaneApplication *>()) {
         [app run:setupFn];

@@ -20,14 +20,14 @@ namespace diamane { namespace platform {
         handle m_handle;
         key_set m_current_keys;
 
-        __platform_specific static auto acquire_handle() -> handle;
+        __platform_specific static auto acquire_handle() -> diamane::handle;
 
     public:
         application();
 
         static auto shared() -> std::shared_ptr<application>;
 
-        __platform_specific auto run(std::function<void()> setupFn) -> void;
+        __platform_specific auto run(int argc, const char **argv, std::function<void()> setupFn) -> void;
 
         __platform_specific auto set_menubar(std::shared_ptr<diamane::ui::menubar> menubar) -> void;
 

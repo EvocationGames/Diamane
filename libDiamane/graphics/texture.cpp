@@ -14,7 +14,7 @@ diamane::gl::texture::texture(std::vector<uint32_t> raw_data, diamane::size size
 
 auto diamane::gl::texture::blank(diamane::size size) -> std::shared_ptr<diamane::gl::texture>
 {
-    return std::make_shared<diamane::gl::texture>(std::vector<uint32_t>(size.width() * size.height(), 0xFFFFFFFF), size);
+    return std::make_shared<diamane::gl::texture>(std::vector<uint32_t>(size.width() * size.height(), 0xFF8800CC), size);
 }
 
 auto diamane::gl::texture::from_raw(std::vector<uint32_t> raw_data, diamane::size size) -> std::shared_ptr<texture>

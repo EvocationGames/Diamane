@@ -15,7 +15,7 @@ namespace diamane { namespace ui {
     class menubar
     {
     private:
-        handle m_handle;
+        diamane::handle m_handle;
 
         __platform_specific static auto acquire_handle() -> handle;
     public:
@@ -23,7 +23,7 @@ namespace diamane { namespace ui {
 
         static auto create() -> std::shared_ptr<menubar>;
 
-        auto handle() -> handle;
+        auto handle() -> diamane::handle;
     };
 
 }};

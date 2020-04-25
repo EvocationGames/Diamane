@@ -1,15 +1,29 @@
 cmake_minimum_required(VERSION 3.15)
 project(Diamane VERSION 0.1.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_FLAGS "-fmodules -fcxx-modules")
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 # libDiamane
 include_directories(${CMAKE_SOURCE_DIR})
-file(GLOB_RECURSE libDiamane_src libDiamane/*.cpp libDiamane/*.mm libDiamane/*.m)
+
+if(APPLE)
+    set(CMAKE_CXX_FLAGS "-fmodules -fcxx-modules")
+    file(GLOB_RECURSE libDiamane_src libDiamane/*.cpp libDiamane/*.mm libDiamane/*.m)
+else(UNIX AND NOT APPLE)
+    find_package(OpenGL REQUIRED)
+    find_package(GLUT REQUIRED)
+    include_directories( ${OPENGL_INCLUDE_DIRS}  ${GLUT_INCLUDE_DIRS} )
+    file(GLOB_RECURSE libDiamane_src libDiamane/*.cpp)
+endif()
+
 add_library(Diamane ${libDiamane_src})
+
+if(UNIX AND NOT APPLE)
+    target_link_libraries(Diamane ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+endif()
+
 
 # DiamaneTestApp
 file(GLOB_RECURSE DiamaneTestApp_src DiamaneTestApp/*.cpp)
