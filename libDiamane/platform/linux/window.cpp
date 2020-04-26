@@ -19,9 +19,11 @@ static auto window_draw() -> void
 
 static auto window_reshape(GLint width, GLint height) -> void
 {
+    auto hw = width >> 1;
+    auto hh = height >> 1;
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
-    gluOrtho2D(0.0, width, 0.0, height);
+    gluOrtho2D(-hw, hw, -hh, hh);
 }
 
 // MARK: -

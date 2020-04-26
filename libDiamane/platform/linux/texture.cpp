@@ -14,10 +14,12 @@ auto diamane::gl::texture::draw(diamane::rect rect, int uv_index) -> void
         register_texture();
     }
 
-    auto l = static_cast<GLfloat>(rect.min_x());
-    auto t = static_cast<GLfloat>(rect.min_y());
-    auto r = static_cast<GLfloat>(rect.max_x());
-    auto b = static_cast<GLfloat>(rect.max_x());
+    auto hw = rect.width() / 2.0;
+    auto hh = rect.height() / 2.0;
+    auto l = static_cast<GLfloat>(rect.min_x()) - hw;
+    auto t = static_cast<GLfloat>(rect.min_y()) - hh;
+    auto r = static_cast<GLfloat>(rect.max_x()) - hw;
+    auto b = static_cast<GLfloat>(rect.max_x()) - hh;
 
     glColor3f(1.0, 1.0, 1.0);
     glEnable(GL_BLEND);
