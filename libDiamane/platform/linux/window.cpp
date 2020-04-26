@@ -59,6 +59,11 @@ auto diamane::ui::window::set_size(diamane::size size) -> void
     m_handle = acquire_handle();
 }
 
+auto diamane::ui::window::center() -> void
+{
+
+}
+
 auto diamane::ui::window::show() -> void
 {
     auto ptr = reinterpret_cast<uintptr_t>(m_handle.get<const int*>());
