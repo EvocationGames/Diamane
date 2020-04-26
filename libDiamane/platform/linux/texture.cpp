@@ -20,16 +20,18 @@ auto diamane::gl::texture::draw(diamane::rect rect, int uv_index) -> void
     auto b = static_cast<GLfloat>(rect.max_x());
 
     glColor3f(1.0, 1.0, 1.0);
-
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, m_handle);
     glBegin(GL_QUADS);
-    glTexCoord2i(0, 0); glVertex2i(l, t);
-    glTexCoord2i(0, 1); glVertex2i(l, b);
-    glTexCoord2i(1, 1); glVertex2i(r, b);
-    glTexCoord2i(1, 0); glVertex2i(r, t);
+    glTexCoord2f(0, 0); glVertex2f(l, t);
+    glTexCoord2f(1, 0); glVertex2f(r, t);
+    glTexCoord2f(1, 1); glVertex2f(r, b);
+    glTexCoord2f(0, 1); glVertex2f(l, b);
     glEnd();
     glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
     glBindTexture(GL_TEXTURE_2D, 0);
 
 }
@@ -44,13 +46,22 @@ auto diamane::gl::texture::draw(diamane::point point, int uv_index) -> void
 
 auto diamane::gl::texture::register_texture() -> void
 {
-    GLuint tex;
+    // Abort if GLUT/OpenGL is not yet initialized.
+    if (glutGet(GLUT_INIT_STATE) == 0) {
+        return;
+    }
+
+    GLuint tex { 0 };
+    glEnable(GL_TEXTURE_2D);
     glGenTextures(1, &tex);
     glBindTexture(GL_TEXTURE_2D, tex);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
-            m_size.width(), m_size.height(), 0,
+                 m_size.width(), m_size.height(), 0,
                  GL_RGBA, GL_UNSIGNED_BYTE, m_data.data());
     glBindTexture(GL_TEXTURE_2D, 0);
 
