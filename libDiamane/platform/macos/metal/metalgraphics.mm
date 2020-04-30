@@ -195,7 +195,7 @@ static inline auto color_vector(const diamane::gl::color& c) -> simd_float4
 - (void)registerTexture:(std::shared_ptr<diamane::gl::texture>)texture
 {
     MTLTextureDescriptor *textureDescriptor = [[MTLTextureDescriptor alloc] init];
-    [textureDescriptor setPixelFormat:MTLPixelFormatRGBA8Unorm];
+    [textureDescriptor setPixelFormat:MTLPixelFormatBGRA8Unorm];
 
     // Set the dimensions of the texture
     auto size = texture->size();
